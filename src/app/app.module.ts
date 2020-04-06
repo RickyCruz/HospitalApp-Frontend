@@ -13,6 +13,7 @@ import { BreadcumbsComponent } from './shared/breadcumbs/breadcumbs.component';
 import { NoPageFoundComponent } from './shared/no-page-found/no-page-found.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { PagesComponent } from './pages/pages.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PagesComponent } from './pages/pages.component';
     BreadcumbsComponent,
     NoPageFoundComponent,
     ProgressComponent,
-    PagesComponent
+    PagesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
