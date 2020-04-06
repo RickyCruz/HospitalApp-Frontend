@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { PagesComponent } from './pages/pages.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { ProgressComponent } from './pages/progress/progress.component';
@@ -7,12 +9,18 @@ import { GraphicsOneComponent } from './pages/graphics-one/graphics-one.componen
 import { NoPageFoundComponent } from './shared/no-page-found/no-page-found.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: '',
+    component: PagesComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'progress', component: ProgressComponent },
+      { path: 'graphics-one', component: GraphicsOneComponent },
+      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    ]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
-  { path: 'progress', component: ProgressComponent },
-  { path: 'graphics-one', component: GraphicsOneComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NoPageFoundComponent },
 ];
 

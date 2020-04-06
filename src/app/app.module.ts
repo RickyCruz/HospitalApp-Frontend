@@ -12,6 +12,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { BreadcumbsComponent } from './shared/breadcumbs/breadcumbs.component';
 import { NoPageFoundComponent } from './shared/no-page-found/no-page-found.component';
 import { ProgressComponent } from './pages/progress/progress.component';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProgressComponent } from './pages/progress/progress.component';
     SidebarComponent,
     BreadcumbsComponent,
     NoPageFoundComponent,
-    ProgressComponent
+    ProgressComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
