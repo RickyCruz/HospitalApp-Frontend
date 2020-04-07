@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+//Routes
+import { APP_ROUTES } from './app.routes';
+
 // Modules
-import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 
 // Components
@@ -18,7 +20,7 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    APP_ROUTES,
     PagesModule,
   ],
   providers: [],
