@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 import { PAGES_ROUTES } from './pages.routes';
 
@@ -8,12 +9,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { GraphicsOneComponent } from './graphics-one/graphics-one.component';
 
+// Temporal
+import { BoosterComponent } from './../components/booster/booster.component';
+
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
     ProgressComponent,
-    GraphicsOneComponent
+    GraphicsOneComponent,
+    BoosterComponent,
   ],
   exports: [
     DashboardComponent,
@@ -22,7 +27,8 @@ import { GraphicsOneComponent } from './graphics-one/graphics-one.component';
   ],
   imports: [
     SharedModule,
-    PAGES_ROUTES
+    PAGES_ROUTES,
+    FormsModule
   ]
 })
 export class PagesModule { }

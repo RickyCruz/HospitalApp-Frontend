@@ -1,0 +1,11 @@
+<h3>{{ label }}</h3>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-primary" type="button" (click)="changeValue(-5)"><i class="mdi mdi-minus"></i></button>
+  </div>
+  <input type="number" class="form-control" placeholder="Progress" value="progress" [(ngModel)]="percentage" aria-label="Progress">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="button" (click)="changeValue(+5)"><i class="mdi mdi-plus"></i></button>
+  </div>
+</div>
