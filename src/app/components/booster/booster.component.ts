@@ -22,6 +22,22 @@ export class BoosterComponent implements OnInit {
     // console.log('Progress: ' + this.percentage);
   }
 
+  onChange(newValue: number) {
+    let elemHTML: any = document.getElementsByName('progress')[0];
+
+    if (newValue > 100) {
+      this.percentage = 100;
+    } else if(newValue < 0) {
+      this.percentage = 0;
+    } else {
+      this.percentage = newValue;
+    }
+
+    elemHTML.value = Number(this.percentage);
+
+    this.progressChanged.emit(this.percentage);
+  }
+
   changeValue(value: number) {
     if (this.percentage >= 100 && value > 0) {
       this.percentage = 100;
