@@ -11,21 +11,34 @@ export class AccountSettingsComponent implements OnInit {
   constructor(public settings: SettingsService) { }
 
   ngOnInit() {
+    this.markAsCurrentTheme();
   }
 
   changeTheme(theme: string, link: any) {
-    this.markAsCurrentTheme(link);
+    this.putAsCurrentTheme(link);
     this.settings.applyTheme(theme);
   }
 
-  markAsCurrentTheme(link: any) {
-    let selectors:any = document.getElementsByClassName('selector');
+  putAsCurrentTheme(link: any) {
+    let selectors: any = document.getElementsByClassName('selector');
 
     for (let ref of selectors) {
       ref.classList.remove('working');
     }
 
     link.classList.add('working');
+  }
+
+  markAsCurrentTheme() {
+    let selectors: any = document.getElementsByClassName('selector');
+    let theme = this.settings.settings.theme;
+
+    for (let ref of selectors) {
+      if (ref.getAttribute('data-theme') == theme) {
+        ref.classList.add('working');
+        break;
+      }
+    }
   }
 
 }
