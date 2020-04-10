@@ -7,28 +7,34 @@ import { PAGES_ROUTES } from './pages.routes';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
-import { GraphicsOneComponent } from './graphics-one/graphics-one.component';
+import { ChartsOneComponent } from './charts-one/charts-one.component';
 
 // Temporal
 import { BoosterComponent } from './../components/booster/booster.component';
+import { ChartComponent } from './../components/chart/chart.component';
+
+// Plugins
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
     ProgressComponent,
-    GraphicsOneComponent,
+    ChartsOneComponent,
     BoosterComponent,
+    ChartComponent
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
-    GraphicsOneComponent
+    ChartsOneComponent
   ],
   imports: [
     SharedModule,
     PAGES_ROUTES,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ]
 })
 export class PagesModule { }
