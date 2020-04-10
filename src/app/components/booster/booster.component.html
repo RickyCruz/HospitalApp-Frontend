@@ -4,7 +4,7 @@
   <div class="input-group-prepend">
     <button class="btn btn-outline-primary" type="button" (click)="changeValue(-5)"><i class="mdi mdi-minus"></i></button>
   </div>
-  <input type="number" class="form-control" placeholder="Progress" value="progress" name="progress" [(ngModel)]="percentage" (ngModelChange)="onChange($event)" aria-label="Progress" max="100" min="0" step="1">
+  <input #txtProgress type="number" class="form-control" placeholder="Progress" value="progress" name="progress" [(ngModel)]="percentage" (ngModelChange)="onChange($event)" aria-label="Progress" max="100" min="0" step="1">
   <div class="input-group-append">
     <button class="btn btn-outline-primary" type="button" (click)="changeValue(+5)"><i class="mdi mdi-plus"></i></button>
   </div>

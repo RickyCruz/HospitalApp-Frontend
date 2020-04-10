@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-booster',
@@ -6,6 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styles: []
 })
 export class BoosterComponent implements OnInit {
+
+  @ViewChild('txtProgress', { static: true }) txtProgress: ElementRef;
 
   @Input('label') label: string = 'Label';
   @Input('progress') percentage: number = 50;
@@ -23,7 +25,7 @@ export class BoosterComponent implements OnInit {
   }
 
   onChange(newValue: number) {
-    let elemHTML: any = document.getElementsByName('progress')[0];
+    // let elemHTML: any = document.getElementsByName('progress')[0];
 
     if (newValue > 100) {
       this.percentage = 100;
@@ -33,7 +35,8 @@ export class BoosterComponent implements OnInit {
       this.percentage = newValue;
     }
 
-    elemHTML.value = Number(this.percentage);
+    // elemHTML.value = Number(this.percentage);
+    this.txtProgress.nativeElement.value = Number(this.percentage);
 
     this.progressChanged.emit(this.percentage);
   }
@@ -52,6 +55,8 @@ export class BoosterComponent implements OnInit {
     this.percentage += (value * 1);
 
     this.progressChanged.emit(this.percentage);
+
+    this.txtProgress.nativeElement.focus();
   }
 
 }
