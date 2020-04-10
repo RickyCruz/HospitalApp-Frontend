@@ -32,7 +32,7 @@ File: scss
   .topbar .top-navbar .navbar-nav > .nav-item > span {
     color: #ffffff; }
   .topbar .navbar-header {
-    background: #272c33; }
+    background: transparent; }
 
 .logo-center .topbar .navbar-header {
   background: transparent;
