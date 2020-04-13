@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { Observable, Subscriber } from 'rxjs';
+import { retry, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -24,27 +24,34 @@ export class RxjsComponent implements OnInit {
   ngOnInit() {
   }
 
-  returnObservable(): Observable<number | string> {
-    return new Observable(observer => {
+  returnObservable(): Observable<any> {
+    return new Observable((observer: Subscriber<any>) => {
       let count = 0;
       let interval = setInterval(() => {
         count ++;
-        observer.next(count);
+
+        const wrapper = { value: count }
+
+        observer.next(wrapper);
 
         if (count === 3) {
           clearInterval(interval);
           observer.complete();
         }
 
-        if (count === 2) {
-          // clearInterval(interval);
-          observer.error('Help!');
-          // Output: 1, 2, 3
-          // We need to reset the count
-        }
+        // if (count === 2) {
+        //   // clearInterval(interval);
+        //   observer.error('Help!');
+        //   // Output: 1, 2, 3
+        //   // We need to reset the count
+        // }
 
       }, 1000);
-    });
+    }).pipe(
+      map((response) => {
+        return response.value;
+      })
+    );
   }
 
 }
