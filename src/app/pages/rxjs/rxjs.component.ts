@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -12,7 +13,7 @@ export class RxjsComponent implements OnInit {
     let observable = new Observable(observer => {
       let count = 0;
       let interval = setInterval(() => {
-        count += 1;
+        count ++;
         observer.next(count);
 
         if (count === 3) {
@@ -21,17 +22,24 @@ export class RxjsComponent implements OnInit {
         }
 
         if (count === 2) {
+          // clearInterval(interval);
           observer.error('Help!');
+          // Output: 1, 2, 3
+          // We need to reset the count
         }
 
       }, 1000);
     });
 
-    observable.subscribe(
-      number => console.log('Observer executed correctly ', number),
-      error => console.error('Error in observable: ', error),
-      () => console.log('The observer finished.')
-    );
+    observable
+      .pipe(
+        retry(2)
+      )
+      .subscribe(
+        number => console.log('Observer executed correctly ', number),
+        error => console.error('Error in observable: ', error),
+        () => console.log('The observer finished.')
+      );
   }
 
   ngOnInit() {
