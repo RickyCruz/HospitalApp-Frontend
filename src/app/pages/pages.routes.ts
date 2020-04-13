@@ -6,6 +6,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { ChartsOneComponent } from './charts-one/charts-one.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 const pagesRoute: Routes = [
   {
@@ -16,6 +17,7 @@ const pagesRoute: Routes = [
       { path: 'progress', component: ProgressComponent },
       { path: 'charts-one', component: ChartsOneComponent },
       { path: 'promises', component: PromisesComponent },
+      { path: 'rxjs', component: RxjsComponent },
       { path: 'account-settings', component: AccountSettingsComponent },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
