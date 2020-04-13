@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { ChartsOneComponent } from './charts-one/charts-one.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     ChartsOneComponent,
     BoosterComponent,
     ChartComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromisesComponent
   ],
   exports: [
     DashboardComponent,
