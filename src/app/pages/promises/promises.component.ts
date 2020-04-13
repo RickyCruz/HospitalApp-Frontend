@@ -8,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class PromisesComponent implements OnInit {
 
   constructor() {
-    let promise = new Promise((resolve, reject) => {
+    // Listen promise
+    this.countThree().then((message) => console.log('Finish! ', message))
+      .catch(error => console.error('Error in promise: ', error));
+  }
+
+  ngOnInit() {
+  }
+
+  countThree(): Promise<string> {
+    return new Promise((resolve, reject) => {
       let count = 0;
 
       let interval = setInterval(() => {
@@ -23,13 +32,6 @@ export class PromisesComponent implements OnInit {
         }
       }, 1000);
     });
-
-    // Listen promise
-    promise.then((message) => console.log('Finish! ', message))
-      .catch(error => console.error('Error in promise: ', error));
-  }
-
-  ngOnInit() {
   }
 
 }
