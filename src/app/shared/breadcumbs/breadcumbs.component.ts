@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 
@@ -11,10 +12,18 @@ export class BreadcumbsComponent implements OnInit {
 
   title: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private _title: Title, private meta: Meta) {
     this.getDataRoute().subscribe(data => {
       // console.log(data);
       this.title = data.title;
+      this._title.setTitle(this.title);
+
+      const metaTag: MetaDefinition = {
+        name: 'description',
+        content: this.title
+      };
+
+      this.meta.updateTag(metaTag);
     });
   }
 
