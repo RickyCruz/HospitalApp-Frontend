@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-import { retry, map } from 'rxjs/operators';
+import { retry, map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -48,8 +48,10 @@ export class RxjsComponent implements OnInit {
 
       }, 1000);
     }).pipe(
-      map((response) => {
-        return response.value;
+      map(response => { return response.value; }),
+      filter((value, index) => { // Must return a boolean
+        console.log('Filter ', value, index);
+        return value % 2 === 1;
       })
     );
   }
