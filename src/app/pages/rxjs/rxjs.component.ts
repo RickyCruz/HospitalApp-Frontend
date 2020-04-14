@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 import { retry, map, filter } from 'rxjs/operators';
 
 @Component({
@@ -7,10 +7,12 @@ import { retry, map, filter } from 'rxjs/operators';
   templateUrl: './rxjs.component.html',
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   constructor() {
-    this.returnObservable()
+    this.subscription = this.returnObservable()
       .pipe(
         retry(2)
       )
@@ -24,6 +26,10 @@ export class RxjsComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   returnObservable(): Observable<any> {
     return new Observable((observer: Subscriber<any>) => {
       let count = 0;
@@ -34,10 +40,10 @@ export class RxjsComponent implements OnInit {
 
         observer.next(wrapper);
 
-        if (count === 3) {
-          clearInterval(interval);
-          observer.complete();
-        }
+        // if (count === 3) {
+        //   clearInterval(interval);
+        //   observer.complete();
+        // }
 
         // if (count === 2) {
         //   // clearInterval(interval);
@@ -45,12 +51,11 @@ export class RxjsComponent implements OnInit {
         //   // Output: 1, 2, 3
         //   // We need to reset the count
         // }
-
       }, 1000);
     }).pipe(
       map(response => { return response.value; }),
       filter((value, index) => { // Must return a boolean
-        console.log('Filter ', value, index);
+        // console.log('Filter ', value, index);
         return value % 2 === 1;
       })
     );
