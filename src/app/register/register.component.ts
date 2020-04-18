@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/service.index';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 import { User } from '../models/user.model';
 
 declare function initPlugins();
@@ -34,7 +34,11 @@ export class RegisterComponent implements OnInit {
     if (this.form.invalid) { return; }
 
     if (! this.form.value.terms) {
-      swal('Whoops!', 'You have to accept terms of use', 'warning');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Whoops!',
+        text: 'You have to accept terms of use'
+      });
       return;
     }
 
