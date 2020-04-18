@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { API_URL } from '../../config/config';
@@ -10,7 +11,7 @@ export class UserService {
   user: User;
   token: string;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public router: Router) {
     this.loadFromStorage();
   }
 
@@ -48,6 +49,16 @@ export class UserService {
           return true;
         })
       );
+  }
+
+  logout() {
+    this.user = null;
+    this.token = '';
+
+    localStorage.removeItem('htoken');
+    localStorage.removeItem('huser');
+
+    this.router.navigate(['/login']);
   }
 
   loadFromStorage() {
