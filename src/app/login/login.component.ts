@@ -14,11 +14,18 @@ declare function initPlugins();
 export class LoginComponent implements OnInit {
 
   remember: boolean = false;
+  email: string;
 
   constructor(public userService: UserService, public router: Router) { }
 
   ngOnInit() {
     initPlugins();
+
+    this.email = localStorage.getItem('hemail') || '';
+
+    if (this.email.length > 1) {
+      this.remember = true;
+    }
   }
 
   logIn(form: NgForm) {

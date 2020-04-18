@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
+  user: User;
+  token: string;
 
   constructor(public http: HttpClient) { }
 
@@ -25,15 +27,28 @@ export class UserService {
   login(user: User, remember: boolean = false) {
     let url = `${ API_URL }/login`;
 
+    if (remember) {
+      localStorage.setItem('hemail', user.email);
+    } else {
+      localStorage.removeItem('hemail');
+    }
+
     return this.http.post(url, user)
       .pipe(
         map((response: any) => {
-          localStorage.setItem('hid', response.id);
-          localStorage.setItem('htoken', response.token);
-          localStorage.setItem('huser', JSON.stringify(response.user));
+          this.saveStorage(response.id, response.token, response.user);
 
           return true;
         })
       );
+  }
+
+  private saveStorage(id: string, token:string, user: User) {
+    localStorage.setItem('hid', id);
+    localStorage.setItem('htoken', token);
+    localStorage.setItem('huser', JSON.stringify(user));
+
+    this.user = user;
+    this.token = token;
   }
 }
