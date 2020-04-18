@@ -21,4 +21,19 @@ export class UserService {
         })
       );
   }
+
+  login(user: User, remember: boolean = false) {
+    let url = `${ API_URL }/login`;
+
+    return this.http.post(url, user)
+      .pipe(
+        map((response: any) => {
+          localStorage.setItem('hid', response.id);
+          localStorage.setItem('htoken', response.token);
+          localStorage.setItem('huser', JSON.stringify(response.user));
+
+          return true;
+        })
+      );
+  }
 }
