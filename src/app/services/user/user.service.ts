@@ -38,6 +38,8 @@ export class UserService {
     return this.http.patch(url, user)
       .pipe(
         map((response: any) => {
+          this.saveStorage(response.user._id, this.token, response.user);
+
           Swal.fire({
             icon: 'success',
             title: 'User updated'
