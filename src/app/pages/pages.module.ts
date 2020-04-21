@@ -21,6 +21,7 @@ import { ChartsOneComponent } from './charts-one/charts-one.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     ChartComponent,
     AccountSettingsComponent,
     PromisesComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     DashboardComponent,

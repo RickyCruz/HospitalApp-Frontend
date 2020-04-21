@@ -32,6 +32,22 @@ export class UserService {
       );
   }
 
+  updateUser(user: User) {
+    let url = `${ API_URL }/users/${ user._id }?token=${ this.token }`;
+
+    return this.http.patch(url, user)
+      .pipe(
+        map((response: any) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'User updated'
+          });
+
+          return response.user;
+        })
+      );
+  }
+
   login(user: User, remember: boolean = false) {
     let url = `${ API_URL }/login`;
 

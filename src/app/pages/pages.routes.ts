@@ -7,6 +7,7 @@ import { ChartsOneComponent } from './charts-one/charts-one.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 import { LoginGuard } from '../services/service.index'
 
 const pagesRoute: Routes = [
@@ -21,6 +22,7 @@ const pagesRoute: Routes = [
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Settings' } },
+      { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },
