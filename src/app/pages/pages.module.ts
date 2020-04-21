@@ -8,6 +8,9 @@ import { PAGES_ROUTES } from './pages.routes';
 import { BoosterComponent } from './../components/booster/booster.component';
 import { ChartComponent } from './../components/chart/chart.component';
 
+// Modules
+import { PipesModule } from '../pipes/pipes.module';
+
 // Plugins
 import { ChartsModule } from 'ng2-charts';
 
@@ -40,7 +43,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     PAGES_ROUTES,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    PipesModule,
   ]
 })
 export class PagesModule { }
