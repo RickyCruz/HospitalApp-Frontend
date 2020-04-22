@@ -39,7 +39,9 @@ export class UserService {
     return this.http.patch(url, user)
       .pipe(
         map((response: any) => {
-          this.saveStorage(response.user._id, this.token, response.user);
+          if (user._id === this.user._id) {
+            this.saveStorage(response.user._id, this.token, response.user);
+          }
 
           Swal.fire({
             icon: 'success',

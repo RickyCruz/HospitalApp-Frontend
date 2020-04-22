@@ -42,11 +42,15 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
                 <td>
-                  <div class="label label-table label-success">{{ user.role }}</div>
+                  <!-- <div class="label label-table label-success">{{ user.role }}</div> -->
+                  <select [(ngModel)]="user.role" name="role" class="form-control">
+                    <option value="ADMIN_ROLE">Admin</option>
+                    <option value="USER_ROLE">User</option>
+                  </select>
                 </td>
                 <td>
-                  <button class="btn btn-primary mr-1">
-                    <i class="fa fa-edit"></i>
+                  <button class="btn btn-primary mr-1" (click)="changeRole(user)">
+                    <i class="fa fa-save"></i>
                   </button>
                   <button class="btn btn-danger" (click)="delete(user)">
                     <i class="fa fa-trash-o"></i>
