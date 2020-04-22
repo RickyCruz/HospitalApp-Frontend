@@ -140,4 +140,10 @@ export class UserService {
       })
     );
   }
+
+  delete(userId: string) {
+    let url = `${ API_URL }/users/${ userId }?token=${ this.token }`;
+
+    return this.http.delete(url);
+  }
 }

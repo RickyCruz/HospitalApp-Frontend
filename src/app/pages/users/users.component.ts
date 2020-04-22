@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/service.index';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -59,5 +60,41 @@ export class UsersComponent implements OnInit {
         this.users = users;
         this.loading = false;
       });
+  }
+
+  delete(user: User) {
+    if (user._id === this.userService.user._id) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Whoops!',
+        text: 'You can\'t delete yourself'
+      });
+
+      return;
+    }
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `If you delete the user ${ user.name } you will not be able to recover their data`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.userService.delete(user._id)
+          .subscribe(response => {
+            this.loadUsers();
+
+            Swal.fire(
+              'Deleted!',
+              `User ${ user.name } has been deleted`,
+              'success'
+            );
+          });
+      }
+    });
+
   }
 }
