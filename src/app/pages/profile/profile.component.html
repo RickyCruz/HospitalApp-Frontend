@@ -31,11 +31,12 @@
 
   <div class="col-lg-6">
     <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Avatar</h4>
+      <div class="card-body" align="center">
+        <h4 class="card-title">Image</h4>
         <h6 class="card-subtitle">Change your image profile</h6>
 
-        <img src="" alt="">
+        <img *ngIf="! temporaryImage" [src]="user.img | imagen" class="w150 m4">
+        <img *ngIf="temporaryImage" [src]="temporaryImage" class="w150 m4">
         <input type="file" (change)="imageWasSelected($event.target.files[0])">
 
         <br>
@@ -43,7 +44,6 @@
         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" [disabled]="! imageSelected" (click)="changeImage()">
           <i class="fa fa-save"></i> Update
         </button>
-
       </div>
     </div>
   </div>

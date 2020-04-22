@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { PAGES_ROUTES } from './pages.routes';
 
@@ -42,6 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
     ChartsOneComponent
   ],
   imports: [
+    CommonModule,
     SharedModule,
     PAGES_ROUTES,
     FormsModule,

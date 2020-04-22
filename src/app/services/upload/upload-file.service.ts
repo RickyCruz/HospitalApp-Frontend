@@ -17,10 +17,10 @@ export class UploadFileService {
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            console.log('File uploaded.');
+            // console.log('File uploaded.');
             resolve(JSON.parse(xhr.response));
           } else {
-            console.log('File uploaded FAIL!.');
+            // console.log('File uploaded FAIL!.');
             reject(xhr.response);
           }
         }
