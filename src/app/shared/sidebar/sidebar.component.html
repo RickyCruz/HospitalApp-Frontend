@@ -6,7 +6,7 @@
       <ul id="sidebarnav">
         <li class="user-profile">
           <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-            <img [src]="user.img | imagen" alt="user" />
+            <img [src]="user.img | imagen" [alt]="user.name" width="30" height="30" class="img-circle">
             <span class="hide-menu">{{ user.name }} </span>
           </a>
           <ul aria-expanded="false" class="collapse">

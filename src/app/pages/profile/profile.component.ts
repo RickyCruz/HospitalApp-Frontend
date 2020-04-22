@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   imageSelected: File;
-  temporaryImage: string;
+  temporaryImage: string | ArrayBuffer;
 
   constructor(private userService: UserService) {
     this.user = this.userService.user;

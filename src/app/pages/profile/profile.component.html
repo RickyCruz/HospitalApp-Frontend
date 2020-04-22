@@ -37,7 +37,7 @@
 
         <img *ngIf="! temporaryImage" [src]="user.img | imagen" class="w150 m4">
         <img *ngIf="temporaryImage" [src]="temporaryImage" class="w150 m4">
-        <input type="file" (change)="imageWasSelected($event.target.files[0])">
+        <input type="file" (change)="imageWasSelected($event.target.files[0])" accept="image/*">
 
         <br>
         <br>

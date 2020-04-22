@@ -93,14 +93,14 @@
         <!-- ============================================================== -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img [src]="user.img | imagen" alt="user" class="profile-pic"/>
+            <img [src]="user.img | imagen" [alt]="user.name" width="30" height="30" class="img-circle">
           </a>
           <div class="dropdown-menu dropdown-menu-right animated fadeIn">
             <ul class="dropdown-user">
               <li>
                 <div class="dw-user-box" align="center">
-                  <div class="u-img">
-                    <img [src]="user.img | imagen" alt="user">
+                  <div class="img">
+                    <img [src]="user.img | imagen" [alt]="user.name" width="64" height="64" class="img-circle">
                   </div>
                   <div class="u-text">
                     <h4>{{ user.name }}</h4>
