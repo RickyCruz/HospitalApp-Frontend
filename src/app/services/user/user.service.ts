@@ -130,4 +130,14 @@ export class UserService {
 
     return this.http.get(url);
   }
+
+  search(keyword: string) {
+    let url = `${ API_URL }/search/collections/users/${ keyword }`;
+
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        return response.users;
+      })
+    );
+  }
 }
