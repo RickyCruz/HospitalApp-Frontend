@@ -1,0 +1,69 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input type="text" class="form-control" placeholder="Search user..." #input>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="alert alert-warning text-center">
+      <strong>Loading</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Please wait</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Registered users (<small>{{ total }}</small>)</h3>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><img [src]="user.img | imagen" [alt]="user.name" width="40px" height="40px" class="img-circle"></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td>
+                  <div class="label label-table label-success">{{ user.role }}</div>
+                </td>
+                <td>
+                  <button class="btn btn-primary">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button class="btn btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button class="btn btn-secondary" (click)="paginate(-5)">
+            Prev
+          </button>
+          <button class="btn btn-secondary" (click)="paginate(+5)">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

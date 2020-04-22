@@ -124,4 +124,10 @@ export class UserService {
         });
       });
   }
+
+  fetchUsers(from: number = 0) {
+    let url = `${ API_URL }/users?from=${ from }`;
+
+    return this.http.get(url);
+  }
 }
