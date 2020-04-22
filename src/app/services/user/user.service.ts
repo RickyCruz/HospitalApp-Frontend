@@ -5,13 +5,14 @@ import { User } from '../../models/user.model';
 import { API_URL } from '../../config/config';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2'
+import { UploadFileService } from '../upload/upload-file.service';
 
 @Injectable()
 export class UserService {
   user: User;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(public http: HttpClient,  public router: Router, public uploadFileService: UploadFileService) {
     this.loadFromStorage();
   }
 
@@ -100,5 +101,27 @@ export class UserService {
 
     this.user = user;
     this.token = token;
+  }
+
+  changeAvatar(file: File, id: string) {
+    this.uploadFileService.upload(file, 'users', id)
+      .then((response: any) => {
+        // console.log(response);
+        this.user.img = response.user.img;
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Image profile updated'
+        });
+
+        this.saveStorage(id, this.token, this.user);
+      })
+      .catch(error => {
+        // console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'An error occurred while uploading the image'
+        });
+      });
   }
 }

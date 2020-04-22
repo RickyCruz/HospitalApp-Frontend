@@ -19,31 +19,10 @@
               <div class="input-group-addon"><i class="ti-email"></i></div>
             </div>
           </div>
-          <!-- <div class="form-group">
-            <label for="exampleInputpwd2">Password</label>
-            <div class="input-group">
-              <input type="password" class="form-control" id="exampleInputpwd2" placeholder="Enter pwd">
-              <div class="input-group-addon"><i class="ti-lock"></i></div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputpwd3">Confirm Password</label>
-            <div class="input-group">
-              <input type="password" class="form-control" id="exampleInputpwd3" placeholder="Enter pwd">
-              <div class="input-group-addon"><i class="ti-lock"></i></div>
-            </div>
-          </div> -->
-          <!-- <div class="form-group">
-            <div class="checkbox checkbox-success">
-              <input id="checkbox2" type="checkbox">
-              <label for="checkbox2"> Remember me </label>
-            </div>
-          </div> -->
           <div class="text-left">
             <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
               <i class="fa fa-save"></i> Save
             </button>
-            <!-- <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button> -->
           </div>
         </form>
       </div>
@@ -57,11 +36,11 @@
         <h6 class="card-subtitle">Change your image profile</h6>
 
         <img src="" alt="">
-        <input type="file">
+        <input type="file" (change)="imageWasSelected($event.target.files[0])">
 
         <br>
         <br>
-        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" [disabled]="! imageSelected" (click)="changeImage()">
           <i class="fa fa-save"></i> Update
         </button>
 

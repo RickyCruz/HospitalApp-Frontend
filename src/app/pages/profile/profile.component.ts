@@ -10,6 +10,7 @@ import { UserService } from '../../services/service.index';
 export class ProfileComponent implements OnInit {
 
   user: User;
+  imageSelected: File;
 
   constructor(private userService: UserService) {
     this.user = this.userService.user;
@@ -24,6 +25,21 @@ export class ProfileComponent implements OnInit {
 
     this.userService.updateUser(this.user)
       .subscribe();
+  }
+
+  imageWasSelected(file: File) {
+
+    if (! file) {
+      this.imageSelected = null;
+
+      return;
+    }
+
+    this.imageSelected = file;
+  }
+
+  changeImage() {
+    this.userService.changeAvatar(this.imageSelected, this.user._id);
   }
 
 }
