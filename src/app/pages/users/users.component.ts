@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/service.index';
 import Swal from 'sweetalert2';
+import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 @Component({
   selector: 'app-users',
@@ -15,10 +16,12 @@ export class UsersComponent implements OnInit {
   total: number = 0;
   loading: boolean = true;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, public modalUploadService: ModalUploadService) { }
 
   ngOnInit() {
     this.loadUsers();
+
+    this.modalUploadService.notification.subscribe(response => this.loadUsers());
   }
 
   loadUsers() {
@@ -99,6 +102,10 @@ export class UsersComponent implements OnInit {
 
   changeRole(user: User) {
     this.userService.updateUser(user).subscribe();
+  }
+
+  showModal(user: User) {
+    this.modalUploadService.showModal('users', user._id);
   }
 
 }
