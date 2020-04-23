@@ -10,6 +10,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { LoginGuard } from '../services/service.index'
+import { HospitalsComponent } from './hospitals/hospitals.component';
 
 const pagesRoute: Routes = [
   {
@@ -26,6 +27,7 @@ const pagesRoute: Routes = [
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
 
       { path: 'users', component: UsersComponent, data: { title: 'Users' } },
+      { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals' } },
 
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
