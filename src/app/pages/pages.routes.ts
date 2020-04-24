@@ -13,12 +13,13 @@ import { LoginGuard } from '../services/service.index'
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 const pagesRoute: Routes = [
   {
     path: '',
     component: PagesComponent,
-    canActivate: [ LoginGuard ],
+    canActivate: [LoginGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
       { path: 'progress', component: ProgressComponent, data: { title: 'Progress' } },
@@ -27,6 +28,7 @@ const pagesRoute: Routes = [
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Settings' } },
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
+      { path: 'search/:keyword', component: SearchComponent, data: { title: 'Search' } },
 
       { path: 'users', component: UsersComponent, data: { title: 'Users' } },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals' } },
