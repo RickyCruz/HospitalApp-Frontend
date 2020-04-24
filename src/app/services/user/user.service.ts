@@ -11,6 +11,7 @@ import { UploadFileService } from '../upload/upload-file.service';
 export class UserService {
   user: User;
   token: string;
+  menu: any[] = [];
 
   constructor(public http: HttpClient,  public router: Router, public uploadFileService: UploadFileService) {
     this.loadFromStorage();
@@ -40,7 +41,7 @@ export class UserService {
       .pipe(
         map((response: any) => {
           if (user._id === this.user._id) {
-            this.saveStorage(response.user._id, this.token, response.user);
+            this.saveStorage(response.user._id, this.token, response.user, response.menu);
           }
 
           Swal.fire({
@@ -65,7 +66,7 @@ export class UserService {
     return this.http.post(url, user)
       .pipe(
         map((response: any) => {
-          this.saveStorage(response.id, response.token, response.user);
+          this.saveStorage(response.id, response.token, response.user, response.menu);
 
           return true;
         })
@@ -86,9 +87,11 @@ export class UserService {
     if (localStorage.getItem('htoken')) {
       this.token = localStorage.getItem('htoken');
       this.user = JSON.parse(localStorage.getItem('huser'));
+      this.menu = JSON.parse(localStorage.getItem('hmenu'));
     } else {
       this.token = '';
       this.user = null;
+      this.menu = [];
     }
   }
 
@@ -96,13 +99,15 @@ export class UserService {
     return this.token.length > 5;
   }
 
-  private saveStorage(id: string, token:string, user: User) {
+  private saveStorage(id: string, token:string, user: User, menu: any) {
     localStorage.setItem('hid', id);
     localStorage.setItem('htoken', token);
     localStorage.setItem('huser', JSON.stringify(user));
+    localStorage.setItem('hmenu', JSON.stringify(menu));
 
     this.user = user;
     this.token = token;
+    this.menu = menu;
   }
 
   changeAvatar(file: File, id: string) {
@@ -116,7 +121,7 @@ export class UserService {
           title: 'Image profile updated'
         });
 
-        this.saveStorage(id, this.token, this.user);
+        this.saveStorage(id, this.token, this.user, this.menu);
       })
       .catch(error => {
         // console.log(error);
