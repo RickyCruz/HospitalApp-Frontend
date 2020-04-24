@@ -9,7 +9,7 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
-import { LoginGuard } from '../services/service.index'
+import { LoginGuard, AdminGuard } from '../services/service.index'
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
@@ -30,7 +30,7 @@ const pagesRoute: Routes = [
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
       { path: 'search/:keyword', component: SearchComponent, data: { title: 'Search' } },
 
-      { path: 'users', component: UsersComponent, data: { title: 'Users' } },
+      { path: 'users', component: UsersComponent, data: { title: 'Users' }, canActivate: [ AdminGuard ] },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals' } },
       { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctors' } },
       { path: 'doctors/:id', component: DoctorComponent, data: { title: 'Doctor' } },
