@@ -76,9 +76,11 @@ export class UserService {
   logout() {
     this.user = null;
     this.token = '';
+    this.menu = [];
 
     localStorage.removeItem('htoken');
     localStorage.removeItem('huser');
+    localStorage.removeItem('hmenu');
 
     this.router.navigate(['/login']);
   }
