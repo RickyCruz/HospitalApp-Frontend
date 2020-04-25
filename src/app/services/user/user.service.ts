@@ -186,4 +186,30 @@ export class UserService {
 
     return this.http.delete(url);
   }
+
+  refreshToken() {
+    let url = `${ API_URL }/login/refresh-token}?token=${ this.token }`;
+
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        this.token = response.token;
+        this.saveStorage(this.user._id, this.token, this.user, this.menu);
+
+        return true;
+      }),
+
+      catchError(response => {
+        this.logout();
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Whoops!',
+          text: 'Invalid token'
+        });
+
+        return throwError(response);
+      })
+    );
+  }
+
 }
