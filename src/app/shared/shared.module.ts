@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcumbsComponent } from './breadcumbs/breadcumbs.component';
 
 import { PipesModule } from '../pipes/pipes.module';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
   imports:[
@@ -20,12 +21,14 @@ import { PipesModule } from '../pipes/pipes.module';
     SidebarComponent,
     BreadcumbsComponent,
     NoPageFoundComponent,
+    ModalUploadComponent,
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
     BreadcumbsComponent,
     NoPageFoundComponent,
+    ModalUploadComponent,
   ]
 })
 export class SharedModule { }

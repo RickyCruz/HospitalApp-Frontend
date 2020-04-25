@@ -16,11 +16,11 @@ import { DoctorComponent } from './doctors/doctor.component';
 import { SearchComponent } from './search/search.component';
 
 const pagesRoute: Routes = [
-  {
-    path: '',
-    component: PagesComponent,
-    canActivate: [LoginGuard],
-    children: [
+  // {
+    // path: '',
+    // component: PagesComponent,
+    // canActivate: [LoginGuard],
+    // children: [
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
       { path: 'progress', component: ProgressComponent, data: { title: 'Progress' } },
       { path: 'charts-one', component: ChartsOneComponent, data: { title: 'Charts One' } },
@@ -36,7 +36,7 @@ const pagesRoute: Routes = [
       { path: 'doctors/:id', component: DoctorComponent, data: { title: 'Doctor' } },
 
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-    ]
-  },
+  //   ]
+  // },
 ];
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoute);
