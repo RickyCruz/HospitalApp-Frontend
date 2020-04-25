@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { API_URL } from '../../config/config';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2'
 import { UploadFileService } from '../upload/upload-file.service';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -30,6 +31,16 @@ export class UserService {
           });
 
           return response.user;
+        }),
+
+        catchError(response => {
+          Swal.fire({
+            icon: 'error',
+            title: response.error.message,
+            text: response.error.errors.message
+          });
+
+          return throwError(response);
         })
       );
   }
@@ -50,6 +61,16 @@ export class UserService {
           });
 
           return response.user;
+        }),
+
+        catchError(response => {
+          Swal.fire({
+            icon: 'error',
+            title: response.error.message,
+            text: response.error.errors.message
+          });
+
+          return throwError(response);
         })
       );
   }
@@ -69,6 +90,16 @@ export class UserService {
           this.saveStorage(response.id, response.token, response.user, response.menu);
 
           return true;
+        }),
+
+        catchError(response => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Whoops!',
+            text: response.error.message
+          });
+
+          return throwError({ code: response.status, message: response.error.message });
         })
       );
   }
