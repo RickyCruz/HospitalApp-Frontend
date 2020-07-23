@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcumbs',
   templateUrl: './breadcumbs.component.html',
   styles: []
 })
-export class BreadcumbsComponent implements OnInit {
+export class BreadcumbsComponent implements OnInit, OnDestroy {
 
   title: string;
+  titleSubs$: Subscription;
 
   constructor(private router: Router, private _title: Title, private meta: Meta) {
-    this.getDataRoute().subscribe(data => {
+    this.titleSubs$ = this.getDataRoute().subscribe(data => {
       // console.log(data);
       this.title = data.title;
       this._title.setTitle(this.title);
@@ -28,6 +30,10 @@ export class BreadcumbsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.titleSubs$.unsubscribe();
   }
 
   getDataRoute() {
